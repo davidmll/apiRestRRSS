@@ -18,8 +18,9 @@ public class Jefe {
 	private double salario;
 	private int telefono;
 
-	@OneToMany(mappedBy = "articulo")
-	private Set<Departamento> departamentos;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idDepartamento")
+	private Departamento departamentos;
 	
 //	Getters and Setters
 
@@ -63,12 +64,14 @@ public class Jefe {
 		this.telefono = telefono;
 	}
 
-	public Set<Departamento> getDepartamentos() {
+	public Departamento getDepartamentos() {
 		return departamentos;
 	}
 
-	public void setDepartamentos(Set<Departamento> departamentos) {
+	public void setDepartamentos(Departamento departamentos) {
 		this.departamentos = departamentos;
 	}
+
+
 
 }
