@@ -2,6 +2,7 @@ package com.projecto.java.controller;
 
 import java.util.*;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.dao.DataAccessException;
@@ -129,16 +130,19 @@ public class DepartamentoController {
 			response.put("mensaje", "Error: no se pudo eliminar el departamento con ID: " + id);
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
-
+		
 		try {
-
 			service.deleteDepartamento(id);
 //			Controlar error claves foraneas
-
 		} catch (DataAccessException e) {
 
 			response.put("mensaje", "Error al eliminar la información en la base de datos");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}catch (ConstraintViolationException e) {
+			response.put("mensaje", "Error con las claves foráneas al eliminar");
+			response.put("error", e.getMessage());
 
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
