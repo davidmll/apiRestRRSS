@@ -30,6 +30,7 @@ public class JefeServiceImpl implements JefeService   {
 	@Override
 	public Jefe saveJefe(Jefe jefe) {
 
+		System.out.println("Imple" + jefe.getDepartamentos());
 		return repo.save(jefe);
 	}
 

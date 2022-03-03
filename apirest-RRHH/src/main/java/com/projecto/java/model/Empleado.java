@@ -15,7 +15,7 @@ public class Empleado {
 	private double salario;
 	private int telefono;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_departamento")
 	private Departamento departamentos;
 
