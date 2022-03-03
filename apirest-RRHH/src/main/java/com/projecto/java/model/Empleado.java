@@ -1,7 +1,5 @@
 package com.projecto.java.model;
 
-import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +7,7 @@ import javax.persistence.*;
 public class Empleado {
 
 	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idempleado;
 
 	private String DNI;
@@ -17,7 +16,7 @@ public class Empleado {
 	private int telefono;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idDepartamento")
+	@JoinColumn(name = "id_departamento")
 	private Departamento departamentos;
 
 //	Getters and Setters

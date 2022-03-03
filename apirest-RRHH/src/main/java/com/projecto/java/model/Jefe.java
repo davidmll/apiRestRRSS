@@ -1,7 +1,5 @@
 package com.projecto.java.model;
 
-import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity
@@ -19,9 +17,9 @@ public class Jefe {
 	private int telefono;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idDepartamento")
+	@JoinColumn(name = "id_departamento")
 	private Departamento departamentos;
-	
+
 //	Getters and Setters
 
 	public int getIdjefe() {
@@ -71,7 +69,5 @@ public class Jefe {
 	public void setDepartamentos(Departamento departamentos) {
 		this.departamentos = departamentos;
 	}
-
-
 
 }
